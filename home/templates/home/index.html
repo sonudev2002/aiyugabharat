@@ -1,0 +1,88 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Aiyuga Bharat | AI for India's Next Builders</title>
+    <meta name="description" content="Aiyuga Bharat is an India-focused AI learning, research, and startup platform.">
+    <link rel="stylesheet" href="{% static 'home/css/site.css' %}">
+</head>
+<body>
+    <header class="site-header">
+        <a class="brand" href="{% url 'home:index' %}" aria-label="Aiyuga Bharat home">
+            <span class="brand-mark">AB</span>
+            <span>Aiyuga Bharat</span>
+        </a>
+        <nav class="nav-links" aria-label="Main navigation">
+            <a href="#mission">Mission</a>
+            <a href="#programs">Programs</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <img class="hero-image" src="{% static 'home/images/hero-aiyuga-bharat.png' %}" alt="Indian learners and innovators collaborating with AI technology">
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <p class="eyebrow">AI education, innovation, and nation-scale problem solving</p>
+                <h1>Aiyuga Bharat</h1>
+                <p class="hero-copy">
+                    Building an AI-ready Bharat through practical learning, responsible technology,
+                    and founder-led solutions for real Indian needs.
+                </p>
+                <div class="hero-actions">
+                    <a class="button button-primary" href="#programs">Explore Programs</a>
+                    <a class="button button-secondary" href="#contact">Partner With Us</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="metrics" aria-label="Aiyuga Bharat goals">
+            {% for number, label in metrics %}
+                <div class="metric">
+                    <strong>{{ number }}</strong>
+                    <span>{{ label }}</span>
+                </div>
+            {% endfor %}
+        </section>
+
+        <section class="section mission" id="mission">
+            <div>
+                <p class="section-kicker">Mission</p>
+                <h2>Make advanced AI capability accessible, useful, and responsible across India.</h2>
+            </div>
+            <p>
+                Aiyuga Bharat brings learners, educators, entrepreneurs, and institutions into one
+                practical ecosystem. The focus is simple: learn deeply, build locally, and apply AI
+                where it can improve lives, livelihoods, and public outcomes.
+            </p>
+        </section>
+
+        <section class="section programs" id="programs">
+            <div class="section-heading">
+                <p class="section-kicker">Programs</p>
+                <h2>Designed for learners who want to build, not just watch.</h2>
+            </div>
+            <div class="program-grid">
+                {% for program in programs %}
+                    <article class="program-card">
+                        <span class="card-index">0{{ forloop.counter }}</span>
+                        <h3>{{ program.title }}</h3>
+                        <p>{{ program.body }}</p>
+                    </article>
+                {% endfor %}
+            </div>
+        </section>
+
+        <section class="section contact-band" id="contact">
+            <div>
+                <p class="section-kicker">Start a conversation</p>
+                <h2>Bring AI learning and builder programs to your campus, city, or organization.</h2>
+            </div>
+            <a class="button button-primary" href="mailto:hello@aiyugabharat.com">hello@aiyugabharat.com</a>
+        </section>
+    </main>
+</body>
+</html>
