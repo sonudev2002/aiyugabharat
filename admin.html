@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aiyuga Bharat Admin | Project Manager</title>
+  <meta name="robots" content="noindex">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+  <main class="admin-shell">
+    <section class="login-panel" data-login-panel>
+      <h1>Aiyuga Bharat Admin</h1>
+      <p>Frontend-only project manager. Data is saved in localStorage and can be exported as JSON.</p>
+      <form data-login-form>
+        <label>Password<input type="password" required placeholder="Enter admin password"></label>
+        <button type="submit">Unlock Admin</button>
+        <p data-login-status></p>
+      </form>
+    </section>
+
+    <section class="admin-app hidden" data-admin-app>
+      <header class="admin-header">
+        <div>
+          <h1>Project Management</h1>
+          <p>Add, edit, delete, import, and export project data.</p>
+        </div>
+        <a href="index.html">Back to Website</a>
+      </header>
+
+      <form class="project-form" data-project-form>
+        <input type="hidden" name="id">
+        <label>Name<input name="name" required></label>
+        <label>Description<textarea name="description" required></textarea></label>
+        <label>Objective<textarea name="objective" required></textarea></label>
+        <label>Technologies<input name="technologies" placeholder="Python, Django, PostgreSQL" required></label>
+        <label>Experience Level<input name="experienceLevel" required></label>
+        <label>Engineering Complexity<input name="engineeringComplexity" required></label>
+        <label>Business Objective<textarea name="businessObjective" required></textarea></label>
+        <label>Real-World Impact<textarea name="realWorldImpact" required></textarea></label>
+        <label>Skills Demonstrated<input name="skillsDemonstrated" required></label>
+        <label>Category<input name="category" required></label>
+        <label>Demo URL<input name="demoUrl" type="url"></label>
+        <label>GitHub URL<input name="githubUrl" type="url"></label>
+        <label>YouTube URL<input name="youtubeUrl"></label>
+        <label>Resume URL<input name="caseStudyUrl"></label>
+        <label>Status<input name="status" required></label>
+        <label>Tags<input name="tags" required></label>
+        <div class="admin-actions">
+          <button type="submit">Save Project</button>
+          <button type="button" data-reset-form>Reset</button>
+          <button type="button" data-export-json>Export JSON</button>
+          <label class="import-button">Import JSON<input type="file" data-import-json accept="application/json"></label>
+        </div>
+      </form>
+
+      <section>
+        <h2>Projects</h2>
+        <div class="admin-projects" data-admin-projects></div>
+      </section>
+    </section>
+  </main>
+  <script src="admin.js"></script>
+</body>
+</html>

@@ -1,9 +1,6 @@
-# Aiyuga Bharat
+# Aiyuga Bharat Website
 
-Aiyuga Bharat is an AI-powered platform for education, innovation, and digital transformation. The project is designed in two parts:
-
-- A React-powered static landing page that runs on GitHub Pages.
-- A Django application that can later be deployed as the full platform on Render.
+Aiyuga Bharat is an MSME-registered technology company and innovation platform. This repository contains a production-ready static website for GitHub Pages and keeps the Django source code intact for future full-platform deployment on Render.
 
 Live website:
 
@@ -11,287 +8,207 @@ Live website:
 https://aiyugabharat.com
 ```
 
-Future full platform URL:
+Future Render platform placeholder:
 
 ```text
 https://your-render-url.onrender.com
 ```
 
-## Project Purpose
+## Overview
 
-The goal of Aiyuga Bharat is to create a professional AI-focused platform for learners, educators, founders, institutions, and organizations. The platform will support AI education, innovation programs, digital transformation, and practical technology adoption.
+The website is designed to work as:
 
-The current GitHub Pages website acts as the public landing page. The Django codebase is kept in the same repository so the full web application can be developed and deployed separately.
+- A company website
+- A technical portfolio
+- A project showcase platform
+- A career and job-readiness platform
+- A freelance and consulting lead-generation platform
 
-## How The Project Works
-
-GitHub Pages can only host static files such as HTML, CSS, and JavaScript. It cannot run Python or Django.
-
-Because of that, this repository uses:
-
-- `index.html` for the public GitHub Pages homepage.
-- `assets/css/style.css` for landing page styling.
-- `assets/js/script.js` for the React landing page components and UI behavior.
-- Django files for the future full application.
-
-When someone opens `https://aiyugabharat.com`, GitHub Pages loads the root `index.html` file.
+It highlights Aiyuga Bharat, the founding team, technical projects, resumes, services, contact details, and project demos.
 
 ## Features
 
-- Modern responsive landing page
-- Smooth scrolling navigation
-- Mobile-friendly menu
-- Hero section with strong startup-style branding
-- About section
-- Features section
-- Technology stack section
-- Contact section
-- Placeholder button for the future Render-hosted Django platform
-- Django project structure already included for backend development
+- Fully static GitHub Pages deployment
+- No build step required
+- Vanilla HTML, CSS, and JavaScript
+- Responsive startup-style design
+- Light and dark mode with localStorage persistence
+- Sticky navigation and mobile menu
+- Typing effect
+- Animated counters
+- Scroll-triggered reveal animations
+- Back-to-top button
+- Dynamic project rendering from `projects.json`
+- Project search, category filter, technology filter, and sorting
+- Dynamic founding team and resume sections from `team.json`
+- FAQ accordion
+- Contact form validation
+- Newsletter form validation
+- Frontend-only admin panel
+- JSON import/export for project management
+- SEO meta tags, Open Graph tags, Twitter card tags, JSON-LD schema, robots.txt, and sitemap.xml
 
-## Technology Stack
-
-Frontend landing page:
-
-- HTML5
-- CSS3
-- JavaScript
-- React
-- GitHub Pages
-
-Backend application:
-
-- Python
-- Django
-- SQLite for local development
-- Render planned for deployment
-
-Version control and hosting:
-
-- Git
-- GitHub
-- GitHub Pages
-
-## Folder Structure
+## File Structure
 
 ```text
 aiyugabharat/
 |-- index.html
-|-- README.md
-|-- requirements.txt
-|-- manage.py
+|-- style.css
+|-- script.js
+|-- projects.json
+|-- team.json
+|-- admin.html
+|-- admin.css
+|-- admin.js
+|-- robots.txt
+|-- sitemap.xml
 |-- CNAME
-|-- assets/
-|   |-- css/
-|   |   `-- style.css
-|   `-- js/
-|       `-- script.js
+|-- README.md
+|-- manage.py
+|-- requirements.txt
 |-- aiyugabharat/
-|   |-- __init__.py
-|   |-- asgi.py
-|   |-- settings.py
-|   |-- urls.py
-|   `-- wsgi.py
-`-- home/
-    |-- templates/
-    |-- static/
-    |-- views.py
-    |-- urls.py
-    `-- models.py
+|-- home/
+`-- venv/
 ```
 
-## Important Files
+## Local Development
 
-`index.html`
+The GitHub Pages website is static. You can open `index.html` directly in a browser, but using a local server is better because the site loads JSON files.
 
-The static homepage used by GitHub Pages. This is the page visitors see at `https://aiyugabharat.com`.
-
-`assets/css/style.css`
-
-All styling for the static landing page.
-
-`assets/js/script.js`
-
-React component code for the static landing page. It also controls the responsive navigation menu, header scroll effect, and dynamic footer year.
-
-`manage.py`
-
-Django command-line entry point. Use this for running the Django application locally.
-
-`requirements.txt`
-
-Python dependencies required by the Django project.
-
-`CNAME`
-
-Custom domain configuration for GitHub Pages.
-
-## Local Setup For Django
-
-Use these steps when you want to run the Django application on your computer.
-
-### 1. Open The Project Folder
-
-```powershell
-cd D:\ayb
-```
-
-### 2. Activate The Virtual Environment
-
-If the virtual environment already exists:
-
-```powershell
-.\venv\Scripts\activate
-```
-
-If you need to create a new virtual environment:
-
-```powershell
-python -m venv venv
-.\venv\Scripts\activate
-```
-
-### 3. Install Requirements
-
-```powershell
-python -m pip install -r requirements.txt
-```
-
-### 4. Apply Database Migrations
-
-```powershell
-python manage.py migrate
-```
-
-### 5. Run The Django Server
-
-```powershell
-python manage.py runserver
-```
-
-Open this URL in your browser:
-
-```text
-http://127.0.0.1:8000/
-```
-
-## Local Preview For GitHub Pages
-
-The GitHub Pages landing page is static. You can preview it by opening this file directly in your browser:
-
-```text
-index.html
-```
-
-You can also use a simple local server from the project root:
+From the repository root:
 
 ```powershell
 python -m http.server 5500
 ```
 
-Then open:
+Open:
 
 ```text
 http://127.0.0.1:5500/
 ```
 
-The landing page uses React from a CDN in `index.html`, so there is no frontend build step required for the current GitHub Pages version.
+Admin panel:
+
+```text
+http://127.0.0.1:5500/admin.html
+```
+
+Default admin password placeholder:
+
+```text
+change-this-password
+```
+
+Change it in `admin.js` before using the admin panel seriously.
 
 ## GitHub Pages Deployment
 
-GitHub Pages should be configured like this:
+1. Push the repository to GitHub.
+2. Open the repository on GitHub.
+3. Go to `Settings`.
+4. Go to `Pages`.
+5. Set source to `Deploy from a branch`.
+6. Select branch `main`.
+7. Select folder `/ root`.
+8. Save.
+
+Because `index.html` is in the repository root, GitHub Pages will display the website instead of rendering `README.md`.
+
+The custom domain is controlled by:
 
 ```text
-Source: Deploy from a branch
-Branch: main
-Folder: / root
+CNAME
 ```
 
-The required root file is:
+## Admin Panel Usage
+
+The admin panel is frontend-only. It does not write directly to GitHub.
+
+Use it to:
+
+- Add a project
+- Edit a project
+- Delete a project
+- Save project data to browser localStorage
+- Export project data as JSON
+- Import project JSON
+
+Recommended workflow:
+
+1. Open `admin.html`.
+2. Enter the password placeholder.
+3. Add or edit projects.
+4. Click `Export JSON`.
+5. Replace the repository `projects.json` file with the exported file.
+6. Commit and push the updated JSON.
+
+## Updating Project Data
+
+Project cards are generated from:
 
 ```text
-index.html
+projects.json
 ```
 
-Because `index.html` exists in the repository root, GitHub Pages will show the landing page instead of rendering `README.md`.
+Each project includes:
 
-## Render Deployment Plan
+- Name
+- Description
+- Objective
+- Technologies
+- Experience level
+- Engineering complexity
+- Business objective
+- Real-world impact
+- Skills demonstrated
+- Category
+- Status
+- Tags
+- Live demo URL
+- GitHub repository URL
+- YouTube or demo request URL
+- Case study or resume URL
 
-The static landing page contains a button named:
+## Updating Team Data
+
+Team cards, resume cards, and detailed team profiles are generated from:
 
 ```text
-Launch Full Platform
+team.json
 ```
 
-For now, it points to this placeholder:
+Update resume, LinkedIn, GitHub, and email placeholders there.
 
-```text
-https://your-render-url.onrender.com
-```
+## Django Notes
 
-After deploying the Django application to Render, replace the placeholder URL in `index.html` with the real Render URL.
+GitHub Pages cannot run Django. The Django application remains in the repository for future backend or full-platform deployment.
 
-Search for:
-
-```text
-https://your-render-url.onrender.com
-```
-
-Then replace it with your actual deployment URL.
-
-## Common Git Commands
-
-Check changed files:
+Run Django locally with:
 
 ```powershell
-git status
+.\venv\Scripts\python.exe manage.py migrate
+.\venv\Scripts\python.exe manage.py runserver
 ```
 
-Add changed files:
+Open:
 
-```powershell
-git add .
+```text
+http://127.0.0.1:8000/
 ```
 
-Commit changes:
+## Commit And Push
 
 ```powershell
-git commit -m "Update project"
-```
-
-Push changes to GitHub:
-
-```powershell
+git add index.html style.css script.js projects.json team.json admin.html admin.css admin.js README.md robots.txt sitemap.xml
+git commit -m "Build production static company website"
 git push
 ```
 
-## Recommended Commit For README Update
+## Important Notes
 
-After editing this README, use:
-
-```powershell
-git add README.md
-git commit -m "Improve project README"
-git push
-```
-
-## Development Notes
-
-- Keep `index.html` in the repository root for GitHub Pages.
-- Keep static landing page CSS inside `assets/css/`.
-- Keep static landing page React JavaScript inside `assets/js/`.
-- Do not expect GitHub Pages to run Django.
-- Deploy Django separately on Render or another Python hosting service.
-- Keep secret keys and environment variables out of Git.
-- Do not commit `venv/`, local database files, cache files, or logs.
-
-## Current Status
-
-- Static landing page: ready for GitHub Pages
-- Custom domain: configured through `CNAME`
-- Django project: ready for local development
-- Full platform deployment: planned for Render
-
-## License
-
-No license has been added yet. Add a license before using this project for public collaboration or open-source distribution.
+- Keep all paths relative.
+- Keep `index.html` in the repository root.
+- Do not use frameworks or build tools for the GitHub Pages version.
+- Deploy Django separately to Render.
+- Replace placeholder links with real resume, LinkedIn, GitHub, demo, and Render URLs.
+- Keep secrets out of Git.
