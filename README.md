@@ -34,19 +34,19 @@ Open `http://127.0.0.1:8000/`.
 
 ## GitHub Pages
 
-GitHub Pages should be configured to serve from the repository root. The static landing page files are:
+GitHub Pages should be configured to serve from the repository root. The static landing page files are organized as:
 
 - `index.html`
-- `style.css`
-- `script.js`
+- `assets/css/style.css`
+- `assets/js/script.js`
 
 These files work directly on GitHub Pages because all paths are relative.
 
 ## Project Structure
 
 - `index.html` - static landing page for GitHub Pages
-- `style.css` - landing page styles
-- `script.js` - landing page navigation and UI behavior
+- `assets/css/style.css` - landing page styles
+- `assets/js/script.js` - landing page navigation and UI behavior
 - `aiyugabharat/` - Django project settings and root URLs
 - `home/` - Django homepage app, template, and static assets
 - `requirements.txt` - Python dependencies
