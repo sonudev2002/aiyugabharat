@@ -8,13 +8,9 @@
     "bio": "Latiksha contributes to Aiyuga Bharat through data science, analytics, AI project planning, and user-focused solution design.",
     "skills": ["Python", "Pandas", "NumPy", "scikit-learn", "Data Analytics", "Machine Learning"],
     "stack": ["Python", "Pandas", "NumPy", "scikit-learn", "TensorFlow", "Dashboards"],
-    "targetRoles": ["Data Analyst", "Data Scientist Intern", "ML Engineer Intern", "AI Associate"],
     "careerGoals": "Secure data science, AI, analytics, or research-oriented roles while contributing to client-ready projects.",
-    "availability": "Open to full-time roles, internships, freelance analytics, and AI project collaboration.",
-    "internship": true,
-    "email": "latiksha@aiyugabharat.com",
-    "resumeUrl": "https://drive.google.com/",
-    "linkedin": "https://www.linkedin.com/",
+    "email": "hr@aiyugabharat.com",
+    "linkedin": "https://www.linkedin.com/in/latiksha-dev-7232ab217/",
     "github": "https://github.com/"
   },
   {
@@ -26,31 +22,23 @@
     "bio": "Sonu leads software engineering execution across Django, FastAPI, Python, APIs, GitHub Pages, and deployment workflows.",
     "skills": ["Python", "Django", "FastAPI", "JavaScript", "PostgreSQL", "AI Integration"],
     "stack": ["Python", "Django", "FastAPI", "PostgreSQL", "Redis", "Docker", "Git"],
-    "targetRoles": ["Software Engineer", "Backend Developer", "Python Developer", "AI Engineer Intern"],
     "careerGoals": "Secure backend, software engineering, or AI engineering roles and deliver freelance engineering projects.",
-    "availability": "Open to full-time roles, internships, freelance software projects, and consulting engagements.",
-    "internship": true,
-    "email": "sonu@aiyugabharat.com",
-    "resumeUrl": "https://drive.google.com/",
-    "linkedin": "https://www.linkedin.com/",
+    "email": "aiyugabharat@aiyugabharat.com",
+    "linkedin": "www.linkedin.com/in/sonu-dev-aiyugabharat",
     "github": "https://github.com/sonudev2002"
   },
   {
     "name": "Prem",
     "initials": "P",
-    "role": "Co-Founder | Systems and Enterprise Solutions",
+    "role": "Software Developer | Systems and Enterprise Solutions",
     "specialization": "C++, system design, automation, and enterprise software workflows",
     "summary": "Works on systems thinking, software architecture, performance-oriented projects, and enterprise automation ideas.",
     "bio": "Prem supports Aiyuga Bharat with systems engineering, architecture planning, automation workflows, and technical delivery.",
     "skills": ["C++", "Python", "System Design", "Linux", "Automation", "APIs"],
     "stack": ["C++", "Python", "Linux", "Git", "Docker", "FastAPI"],
-    "targetRoles": ["Software Engineer", "Systems Engineer", "Backend Intern", "Automation Developer"],
     "careerGoals": "Build strong systems engineering experience and contribute to reliable enterprise-grade products.",
-    "availability": "Open to full-time roles, internships, freelance automation, and backend development projects.",
-    "internship": true,
-    "email": "prem@aiyugabharat.com",
-    "resumeUrl": "https://drive.google.com/",
-    "linkedin": "https://www.linkedin.com/",
-    "github": "https://github.com/"
+    "email": "prem_dev@aiyugabharat.com",
+    "linkedin": "www.linkedin.com/in/premdeviitjodhpur",
+    "github": "https://github.com/premdev1234"
   }
 ]
