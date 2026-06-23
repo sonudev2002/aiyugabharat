@@ -22,8 +22,7 @@
   "description": "End-to-end AI-powered content creation and publishing platform that transforms prompts, documents, scenarios, or datasets into videos, presentations, blogs, images, social media posts, and marketing assets, then automatically publishes them across multiple platforms while providing detailed analytics and AI-driven optimization recommendations.",
   "objective": "Enable businesses, creators, educators, startups, and marketing teams to generate high-quality multimedia content, automate publishing workflows, monitor engagement metrics, and continuously improve content performance using AI.",
   "technologies": [
-    "Python",
-    "FastAPI",
+    "Python", "FastAPI",
     "Django",
     "React",
     "PostgreSQL",
