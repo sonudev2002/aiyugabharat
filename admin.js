@@ -1,4 +1,4 @@
-const PASSWORD = "change-this-password";
+const PASSWORD = "ssss";
 const STORAGE_KEY = "aiyuga-admin-projects";
 let projects = [];
 
