@@ -53,20 +53,20 @@ function setTheme(theme) {
 }
 
 function initTheme() {
-  setTheme(
-    localStorage.getItem("aiyuga-theme") || "dark"
-  );
 
-  $("[data-theme-toggle]").addEventListener(
-    "click",
-    () => {
-      setTheme(
-        document.documentElement.dataset.theme === "dark"
-          ? "light"
-          : "dark"
-      );
-    }
-  );
+    setTheme(localStorage.getItem("aiyuga-theme") || "dark");
+
+    const themeButton = $("[data-theme-toggle]");
+
+    if (!themeButton) return;
+
+    themeButton.addEventListener("click", () => {
+        setTheme(
+            document.documentElement.dataset.theme === "dark"
+                ? "light"
+                : "dark"
+        );
+    });
 }
 
 function initNavigation() {
@@ -74,7 +74,8 @@ function initNavigation() {
   const nav = $("[data-nav]");
   const toggle = $("[data-nav-toggle]");
   const backToTop = $("[data-back-to-top]");
-
+  if (!header || !nav || !toggle || !backToTop)
+        return;
   const sync = () => {
     header.classList.toggle(
       "is-scrolled",
@@ -370,174 +371,164 @@ function getFilteredProjects() {
 
 function renderProjectFilters() {
 
-  const categories = [
-    ...new Set(
-      state.projects.map(
-        (p) => p.category
-      )
-    ),
-  ].sort();
+    const categoryFilter = $("[data-category-filter]");
+    const techFilter = $("[data-tech-filter]");
 
-  const techs = [
-    ...new Set(
-      state.projects.flatMap(
-        (p) => p.technologies
-      )
-    ),
-  ].sort();
+    if (!categoryFilter || !techFilter) {
+        return;
+    }
 
-  $("[data-category-filter]").innerHTML =
-    '<option value="all">All Categories</option>' +
-    categories
-      .map(
-        (item) =>
-          `<option value="${item}">${item}</option>`
-      )
-      .join("");
+    const categories = [
+        ...new Set(state.projects.map(p => p.category))
+    ].sort();
 
-  $("[data-tech-filter]").innerHTML =
-    '<option value="all">All Technologies</option>' +
-    techs
-      .map(
-        (item) =>
-          `<option value="${item}">${item}</option>`
-      )
-      .join("");
+    const techs = [
+        ...new Set(state.projects.flatMap(p => p.technologies))
+    ].sort();
+
+    categoryFilter.innerHTML =
+        '<option value="all">All Categories</option>' +
+        categories.map(item =>
+            `<option value="${item}">${item}</option>`
+        ).join("");
+
+    techFilter.innerHTML =
+        '<option value="all">All Technologies</option>' +
+        techs.map(item =>
+            `<option value="${item}">${item}</option>`
+        ).join("");
 }
 
 function renderProjects() {
 
-  const projects =
-    getFilteredProjects();
+    const projects = getFilteredProjects();
 
-  $("[data-project-count]").textContent =
-    `${projects.length} project${
-      projects.length === 1 ? "" : "s"
-    } found`;
+    // Optional project counter
+    const projectCount = $("[data-project-count]");
 
-  $("[data-projects-grid]").innerHTML =
-    projects
-      .map(
-        (project) => `
-      <article class="project-card reveal">
+    if (projectCount) {
+        projectCount.textContent =
+            `${projects.length} project${projects.length === 1 ? "" : "s"} found`;
+    }
 
-        <div class="badge-row">
-          <span class="badge cyan">
-            ${project.category}
-          </span>
+    // Ensure the projects grid exists
+    const projectsGrid = $("[data-projects-grid]");
 
-          <span class="badge gold">
-            ${project.status}
-          </span>
-        </div>
+    if (!projectsGrid) {
+        console.error("Projects grid not found.");
+        return;
+    }
 
-        <h3>${project.name}</h3>
+    projectsGrid.innerHTML = projects
+        .map(project => `
+            <article class="project-card reveal">
 
-        <p>${project.description}</p>
+                <div class="badge-row">
+                    <span class="badge cyan">
+                        ${project.category}
+                    </span>
 
-        <div class="project-meta">
-          <span>
-            <strong>Level:</strong>
-            ${project.experienceLevel}
-          </span>
+                    <span class="badge gold">
+                        ${project.status}
+                    </span>
+                </div>
 
-          <span>
-            <strong>Complexity:</strong>
-            ${project.engineeringComplexity}
-          </span>
-        </div>
+                <h3>${project.name}</h3>
 
-        <p>
-          <strong>Objective:</strong>
-          ${project.objective}
-        </p>
+                <p>${project.description}</p>
 
-        <p>
-          <strong>Impact:</strong>
-          ${project.realWorldImpact}
-        </p>
+                <div class="project-meta">
+                    <span>
+                        <strong>Level:</strong>
+                        ${project.experienceLevel}
+                    </span>
 
-        <div class="tag-list">
-          ${project.technologies
-            .map(
-              (tech) => `<span>${tech}</span>`
-            )
-            .join("")}
-        </div>
+                    <span>
+                        <strong>Complexity:</strong>
+                        ${project.engineeringComplexity}
+                    </span>
+                </div>
 
-        <div class="card-actions">
+                <p>
+                    <strong>Objective:</strong>
+                    ${project.objective}
+                </p>
 
-          <a href="${project.demoUrl}"
-             target="_blank"
-             rel="noopener">
-             Live Demo
-          </a>
+                <p>
+                    <strong>Impact:</strong>
+                    ${project.realWorldImpact}
+                </p>
 
-          <a href="${project.githubUrl}"
-             target="_blank"
-             rel="noopener">
-             Source Code
-          </a>
+                <div class="tag-list">
+                    ${project.technologies
+                        .map(tech => `<span>${tech}</span>`)
+                        .join("")}
+                </div>
 
-          <a href="${project.caseStudyUrl}"
-             target="_blank"
-             rel="noopener">
-             Case Study
-          </a>
+                <div class="card-actions">
 
-        </div>
+                    <a href="${project.demoUrl}"
+                       target="_blank"
+                       rel="noopener">
+                        Live Demo
+                    </a>
 
-      </article>
-    `
-      )
-      .join("");
+                    <a href="${project.githubUrl}"
+                       target="_blank"
+                       rel="noopener">
+                        Source Code
+                    </a>
 
-  initRevealAnimations();
+                    <a href="${project.caseStudyUrl}"
+                       target="_blank"
+                       rel="noopener">
+                        Case Study
+                    </a>
+
+                </div>
+
+            </article>
+        `)
+        .join("");
+
+    initRevealAnimations();
 }
 
 function initProjectControls() {
 
-  $("[data-search]").addEventListener(
-    "input",
-    (event) => {
-      state.filters.search =
-        event.target.value;
+    const search = $("[data-search]");
+    const category = $("[data-category-filter]");
+    const tech = $("[data-tech-filter]");
+    const sort = $("[data-sort]");
 
-      renderProjects();
+    if (search) {
+        search.addEventListener("input", e => {
+            state.filters.search = e.target.value;
+            renderProjects();
+        });
     }
-  );
 
-  $("[data-category-filter]").addEventListener(
-    "change",
-    (event) => {
-      state.filters.category =
-        event.target.value;
-
-      renderProjects();
+    if (category) {
+        category.addEventListener("change", e => {
+            state.filters.category = e.target.value;
+            renderProjects();
+        });
     }
-  );
 
-  $("[data-tech-filter]").addEventListener(
-    "change",
-    (event) => {
-      state.filters.tech =
-        event.target.value;
-
-      renderProjects();
+    if (tech) {
+        tech.addEventListener("change", e => {
+            state.filters.tech = e.target.value;
+            renderProjects();
+        });
     }
-  );
 
-  $("[data-sort]").addEventListener(
-    "change",
-    (event) => {
-      state.filters.sort =
-        event.target.value;
-
-      renderProjects();
+    if (sort) {
+        sort.addEventListener("change", e => {
+            state.filters.sort = e.target.value;
+            renderProjects();
+        });
     }
-  );
 }
-
 function initFaq() {
 
   const faqList =
@@ -661,19 +652,39 @@ function initForms() {
 
 async function loadData() {
 
-  const [
-    projectsResponse,
-    teamResponse,
-  ] = await Promise.all([
-    fetch("projects.json"),
-    fetch("team.json"),
-  ]);
+    try {
 
-  state.projects =
-    await projectsResponse.json();
+        const projectsResponse = await fetch("projects.json");
 
-  state.team =
-    await teamResponse.json();
+        if (!projectsResponse.ok)
+            throw new Error("projects.json not found");
+
+        state.projects = await projectsResponse.json();
+
+    } catch (err) {
+
+        console.error(err);
+
+        state.projects = [];
+
+    }
+
+    try {
+
+        const teamResponse = await fetch("team.json");
+
+        if (teamResponse.ok)
+            state.team = await teamResponse.json();
+
+    }
+
+    catch(err){
+
+        console.warn("team.json missing");
+
+        state.team = [];
+
+    }
 }
 
 async function init() {
@@ -700,23 +711,37 @@ async function init() {
 
   renderProjects();
 
+  // Initialize filters only if the controls exist
+  if (
+    $("[data-search]") ||
+    $("[data-category-filter]") ||
+    $("[data-tech-filter]") ||
+    $("[data-sort]")
+  ) {
+    initProjectControls();
+  }
+
   initRevealAnimations();
 
-  $("[data-year]").textContent =
-    new Date().getFullYear();
+  const year = $("[data-year]");
+  if (year) {
+    year.textContent = new Date().getFullYear();
+  }
 
-  setTimeout(() => {
-    $("[data-loader]").classList.add(
-      "is-hidden"
-    );
-  }, 350);
+  const loader = $("[data-loader]");
+  if (loader) {
+    setTimeout(() => {
+      loader.classList.add("is-hidden");
+    }, 350);
+  }
 }
 
 init().catch((error) => {
 
   console.error(error);
 
-  $("[data-loader]").classList.add(
-    "is-hidden"
-  );
+  const loader = $("[data-loader]");
+  if (loader) {
+    loader.classList.add("is-hidden");
+  }
 });
