@@ -34,6 +34,35 @@
     "caseStudyUrl": ""
   },
   {
+    "name": "AYB Cast",
+    "description": "Create and download a ten-second campaign video in your browser with Aiyuga Bharat’s publishing studio.",
+    "objective": "Turn a hook, message and call to action into a short video.",
+    "technologies": [
+      "JavaScript",
+      "Canvas",
+      "MediaRecorder"
+    ],
+    "experienceLevel": "Advanced",
+    "engineeringComplexity": "High",
+    "businessObjective": "Help creators prepare short campaigns.",
+    "realWorldImpact": "Visitors can render and download a clip without signing in.",
+    "skillsDemonstrated": [
+      "Browser video rendering",
+      "Responsive design"
+    ],
+    "category": "Generative AI",
+    "status": "Prototype",
+    "tags": [
+      "AYB",
+      "Video",
+      "Publishing"
+    ],
+    "demoUrl": "https://aiyugabharat.com/ayb-cast/",
+    "githubUrl": "",
+    "youtubeUrl": "",
+    "caseStudyUrl": ""
+  },
+  {
     "name": "AI Content Studio",
     "description": "A planned workspace for turning a brief into videos, presentations, and posts, then scheduling publication across channels.",
     "objective": "Enable businesses, creators, educators, startups, and marketing teams to generate high-quality multimedia content, automate publishing workflows, monitor engagement metrics, and continuously improve content performance using AI.",
