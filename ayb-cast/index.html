@@ -1,16 +1,67 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>AYB Cast · Aiyuga Bharat</title><link rel="stylesheet" href="./style.css"></head><body><header><div class="brand">AYB Cast</div><a style="color:white" href="/#projects">Aiyuga Bharat projects</a></header><main><details class="clipstudio" id="clipStudio" open><summary>Campaign video studio</summary>
-<p>Try the public demo from Aiyuga Bharat. Turn a brief into a 10-second clip for your audience.</p>
-<form id="clipForm"><div class="clipgrid"><div>
-<label>Creative prompt<textarea required id="idea" maxlength="900" rows="2" placeholder="Show how a five-minute revision quiz helps students spot gaps.">Solve a binary search question in five minutes.</textarea></label>
-<div class="prefs"><label>Target audience<input required id="audience" value="GATE CSE aspirants" maxlength="120" placeholder="GATE CSE aspirants"></label></div>
-<label>Opening hook<input id="hook" maxlength="90" placeholder="Still forgetting what you revised yesterday?"></label>
-<label>Call to action<input required id="cta" value="Try the free quiz" maxlength="90" placeholder="Try the free revision quiz"></label>
-
-</div><div>
-<div class="prefs"><label>Format<select id="ratio"><option>9:16</option><option>16:9</option><option>1:1</option></select></label>
-<label id="paletteGroup">Color style<select id="palette"><option>Midnight lime</option><option>Ocean blue</option><option>Plum rose</option></select></label></div>
-<p id="methodNote">Three animated text cards: hook, message, and call to action. Keep this tab visible during rendering.</p>
-<button class="primary" id="createClip">Create 10-second promo</button>
-</div></div></form><p id="clipMessage" role="status"></p>
-<div id="clipOutput" hidden><video controls playsinline id="clipPlayer"></video><div><a id="downloadClip" download>Download video</a></div></div></details>
-<a href="https://cast.aiyugabharat.com">Open private publishing studio (owner sign-in)</a></main><script src="demo.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#201d32">
+<title>AYB Cast · Campaign video studio</title>
+<style>
+* {box-sizing:border-box}
+:root {--ink:#201d32;--paper:#f7f5ef;--lime:#d6fb83;--line:#d9d6cf;--muted:#5d5964}
+body {margin:0;background:var(--paper);color:var(--ink);font:16px/1.5 "DM Sans",system-ui,sans-serif}
+header,main,footer {width:min(1190px,92%);margin:auto}
+header,nav,.brand,.sectionhead,.actions,footer {display:flex;align-items:center;gap:16px}
+header {justify-content:space-between;padding:20px 0;border-bottom:1px solid var(--line)}
+a {color:inherit;text-underline-offset:4px}
+.brand {font-size:22px;font-weight:800;text-decoration:none;letter-spacing:-1px;gap:9px}
+.mark {background:var(--ink);color:var(--lime);border-radius:10px;padding:4px 10px;font-size:23px}
+nav a {font-size:14px;font-weight:650}.studio {background:var(--ink);color:white;padding:11px 17px;border-radius:30px;text-decoration:none}
+.hero {padding:48px clamp(22px,5vw,74px);margin:24px 0 32px;background:#262239;color:#fff;border-radius:26px;display:grid;grid-template-columns:1.25fr 1fr;align-items:center;gap:28px;overflow:hidden}
+h1,h2,p {margin:0}h1 {font-size:clamp(46px,6.1vw,86px);line-height:.98;letter-spacing:-.065em;font-weight:740;max-width:12ch}
+h1 em {font-family:Georgia,serif;color:var(--lime);font-weight:400}
+.hero p {color:#e2dfec;max-width:41ch;margin:20px 0}
+.cta,button {display:inline-flex;align-items:center;justify-content:center;background:var(--lime);color:var(--ink);font:inherit;font-weight:720;border:0;border-radius:24px;padding:12px 20px;text-decoration:none;cursor:pointer}
+.art {display:grid;place-items:center;position:relative;isolation:isolate;min-height:190px}.art:before,.art:after {content:"";position:absolute;border:1px solid #777187;border-radius:50%;width:min(100%,360px);height:64%;transform:rotate(-25deg);z-index:-1}.art:after {transform:rotate(25deg)}
+.film {display:flex;align-items:center;gap:5px;transform:rotate(-8deg);background:#191724;border:6px dotted #655f77;padding:11px 7px;border-radius:7px;box-shadow:0 16px 22px #13102166}
+.frame {display:grid;place-items:center;width:clamp(58px,5.8vw,84px);aspect-ratio:3/4;background:#ada1ec;color:#29223c;font:italic 48px Georgia;border-radius:3px}
+.frame:nth-child(2){background:var(--lime)}.frame:nth-child(3){background:#f5b7a0}
+.workspace {display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:22px;align-items:start}
+.panel {background:#fff;border:1px solid var(--line);border-radius:22px;padding:clamp(20px,3vw,38px)}
+h2 {font-size:clamp(24px,3vw,34px);letter-spacing:-.055em}.panel>p,.hint {color:var(--muted);font-size:14px}
+form {display:grid;gap:15px;margin-top:22px}.pair {display:grid;grid-template-columns:1fr 1fr;gap:14px}
+label {display:grid;gap:5px;font-weight:650;font-size:14px}
+input,textarea,select {width:100%;min-width:0;line-height:1.45;font-family:inherit;font-size:16px;background:#fbfaf7;color:var(--ink);border:1px solid #bcb8bf;border-radius:10px;padding:10px}
+textarea {resize:vertical}button {background:var(--ink);color:white}button:disabled {opacity:.6;cursor:wait}
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible {outline:3px solid #7860c4;outline-offset:3px}
+.sectionhead {justify-content:space-between;margin-bottom:16px}.time {font:13px monospace;white-space:nowrap}
+.stage {display:grid;place-items:center;height:310px;border-radius:14px;background:repeating-linear-gradient(135deg,#eeece7 0 1px,#f5f3ee 1px 8px);padding:14px}
+canvas {max-width:100%;max-height:100%;width:auto;height:auto;min-height:0;min-width:0;border-radius:5px;box-shadow:0 4px 16px #211d3326}
+.scrub {margin-top:16px}.scrub input {padding:0;accent-color:#594684}video {width:100%;max-height:360px;background:#161420;border-radius:12px}
+#clipMessage:not(:empty),#clipOutput {margin-top:14px}footer {justify-content:space-between;padding:28px 0;color:var(--muted);font-size:14px}
+@media(max-width:740px){.workspace {grid-template-columns:1fr}.hero {padding:28px;grid-template-columns:1fr}.art {display:none}.hero h1 {max-width:14ch}nav .projects {display:none}.pair {grid-template-columns:1fr}.stage {height:260px}header {padding:14px 0}.studio {padding:10px 12px}}
+</style></head>
+<body><header><a class="brand" href="./"><span class="mark" aria-hidden="true">≈</span> AYB Cast</a><nav aria-label="Main"><a class="projects" href="/#projects">Projects</a><a class="studio" href="https://cast.aiyugabharat.com">Open studio ↗</a></nav></header>
+<main><section class="hero"><div><h1>Your idea, in <em>ten seconds.</em></h1><p>Create a short promo with animated text. Write your message, choose a look, and download your video.</p><a class="cta" href="#composer">Create a clip ↓</a></div><div class="art" aria-hidden="true"><div class="film"><span class="frame">Aa</span><span class="frame">▶</span><span class="frame">↗</span></div></div></section>
+<div class="workspace"><section class="panel" id="composer"><h2>Campaign brief</h2><p>Start with the message you want people to remember.</p>
+<form id="clipForm"><label>Creative prompt<textarea required id="idea" maxlength="900" rows="2">Solve a binary search question in five minutes.</textarea></label>
+<div class="pair"><label>Target audience<input required id="audience" maxlength="120" value="GATE CSE aspirants"></label><label>Opening hook (optional)<input id="hook" maxlength="90" placeholder="Ready for a quick challenge?"></label></div>
+<label>Call to action<input required id="cta" maxlength="90" value="Try the free quiz"></label>
+<div class="pair"><label>Format<select id="ratio"><option>9:16</option><option>16:9</option><option>1:1</option></select></label><label>Color style<select id="palette"><option>Midnight lime</option><option>Ocean blue</option><option>Plum rose</option></select></label></div>
+<div class="actions"><button id="createClip">Create 10-second clip</button></div><p class="hint">Keep this tab visible while your video renders.</p></form>
+<p id="clipMessage" role="status"></p><div id="clipOutput" hidden><video controls playsinline id="clipPlayer"></video><a id="downloadClip" download>Download video ↓</a></div></section>
+<section class="panel"><div class="sectionhead"><h2>Clip preview</h2><output class="time" id="time" for="position">0:04 / 0:10</output></div><div class="stage"><canvas id="preview" aria-label="Preview of your animated text card"></canvas></div><label class="scrub">Preview timeline<input id="position" type="range" min="0" max="10" step=".1" value="4"></label><p class="hint">Drag to preview your hook, message, and call to action.</p></section></div></main>
+<footer><span>AYB Cast · Aiyuga Bharat</span><a href="/#projects">All projects ↗</a></footer>
+<script src="./demo.js"></script>
+<script>
+function refreshPreview() {
+  const brief = Object.fromEntries(['idea','hook','audience','cta','palette','ratio'].map(id => [id, document.getElementById(id).value.trim()]));
+  const canvas = document.getElementById('preview');
+  [canvas.width, canvas.height] = brief.ratio === '9:16' ? [720,1280] : brief.ratio === '16:9' ? [1280,720] : [720,720];
+  const seconds = Number(document.getElementById('position').value);
+  drawCard(canvas.getContext('2d'), canvas.width, canvas.height, brief, seconds);
+  document.getElementById('time').textContent = '0:' + String(Math.floor(seconds)).padStart(2,'0') + ' / 0:10';
+}
+document.getElementById('clipForm').addEventListener('input', refreshPreview);
+document.getElementById('position').addEventListener('input', refreshPreview);
+refreshPreview();
+</script></body></html>
