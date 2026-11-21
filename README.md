@@ -26,27 +26,15 @@ The website is designed to work as:
 
 It highlights Aiyuga Bharat, the founding team, technical projects, resumes, services, contact details, and project demos.
 
-## Features
+## Public website
 
-- Fully static GitHub Pages deployment
-- No build step required
-- Vanilla HTML, CSS, and JavaScript
-- Responsive startup-style design
-- Light and dark mode with localStorage persistence
-- Sticky navigation and mobile menu
-- Typing effect
-- Animated counters
-- Scroll-triggered reveal animations
-- Back-to-top button
-- Dynamic project rendering from `projects.json`
-- Project search, category filter, technology filter, and sorting
-- Dynamic founding team and resume sections from `team.json`
-- FAQ accordion
-- Contact form validation
-- Newsletter form validation
-- Frontend-only admin panel
-- JSON import/export for project management
-- SEO meta tags, Open Graph tags, Twitter card tags, JSON-LD schema, robots.txt, and sitemap.xml
+The homepage features AutoEval with a screenshot of its public sign-in page. The project gallery reads project statuses from `projects.json`. Its **Try online** filter shows entries with a public demo URL. Leave unknown URLs empty. Founder contact links come from `team.json`.
+
+### Contact delivery
+
+Without a delivery service, the inquiry form opens a prefilled email draft. The visitor sends it from their email app. A direct email link is also available.
+
+To enable in-page delivery, set the verified team Formspree endpoint as the `action` attribute on the form with `id="inquiry"` in `index.html`. The form posts the inquiry, checks for an affirmative provider receipt, and retains the text on failure. Before publishing, submit a test inquiry and confirm arrival in the team inbox.
 
 ## File Structure
 
@@ -108,7 +96,7 @@ Change it in `admin.js` before using the admin panel seriously.
 3. Go to `Settings`.
 4. Go to `Pages`.
 5. Set source to `Deploy from a branch`.
-6. Select branch `main`.
+6. Select the configured publishing branch (the repository default is `master`).
 7. Select folder `/ root`.
 8. Save.
 

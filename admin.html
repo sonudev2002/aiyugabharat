@@ -1,65 +1,31 @@
 <!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Aiyuga Bharat Admin | Project Manager</title>
-  <meta name="robots" content="noindex">
-  <link rel="stylesheet" href="admin.css">
-</head>
-<body>
-  <main class="admin-shell">
-    <section class="login-panel" data-login-panel>
-      <h1>Aiyuga Bharat Admin</h1>
-      <p>Frontend-only project manager. Data is saved in localStorage and can be exported as JSON.</p>
-      <form data-login-form>
-        <label>Password<input type="password" required placeholder="Enter admin password"></label>
-        <button type="submit">Unlock Admin</button>
-        <p data-login-status></p>
-      </form>
-    </section>
-
-    <section class="admin-app hidden" data-admin-app>
-      <header class="admin-header">
-        <div>
-          <h1>Project Management</h1>
-          <p>Add, edit, delete, import, and export project data.</p>
-        </div>
-        <a href="index.html">Back to Website</a>
-      </header>
-
-      <form class="project-form" data-project-form>
-        <input type="hidden" name="id">
+<html lang="en" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Aiyuga Bharat Admin | Project Manager</title><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="admin.css"></head><body>
+<header class="mast shell"><a class="brand" href="index.html"><b>AB</b> Aiyuga Bharat</a><div class="actions"><a href="index.html">Back to website</a><button class="theme" aria-label="Switch theme">☼</button></div></header>
+<main class="shell">
+<section id="login" class="panel login"><p class="kicker">Administration</p><h1>Project manager</h1><p>Edit a browser-local draft of the website catalog.</p><form id="unlock"><label>Password<input type="password" autocomplete="current-password" required></label><button class="button">Unlock admin</button></form></section>
+<p id="notice" role="status"></p>
+<section id="workspace" hidden><div class="toolbar"><div><p class="kicker">Administration</p><h1>Project catalog</h1></div><button id="lock">Lock workspace</button></div>
+<p>Changes are saved in this browser. To publish, export the catalog and update the website’s projects.json file.</p>
+<div class="actions"><button id="add" class="button">Add project</button><button id="export">Export JSON</button><button id="import">Import JSON</button><input id="file" type="file" accept=".json,application/json" hidden></div>
+<section id="editor" hidden class="panel"><h2 id="editor-title">Add project</h2><form id="project"><div class="fields">
         <label>Name<input name="name" required></label>
         <label>Description<textarea name="description" required></textarea></label>
-        <label>Objective<textarea name="objective" required></textarea></label>
-        <label>Technologies<input name="technologies" placeholder="Python, Django, PostgreSQL" required></label>
-        <label>Experience Level<input name="experienceLevel" required></label>
-        <label>Engineering Complexity<input name="engineeringComplexity" required></label>
-        <label>Business Objective<textarea name="businessObjective" required></textarea></label>
-        <label>Real-World Impact<textarea name="realWorldImpact" required></textarea></label>
-        <label>Skills Demonstrated<input name="skillsDemonstrated" required></label>
         <label>Category<input name="category" required></label>
+        <label>Status<input name="status" list="stages" required></label>
+</div><datalist id="stages"></datalist>
+<details><summary>Project details and links</summary><div class="fields">
+        <label>Objective<textarea name="objective"></textarea></label>
+        <label>Technologies<input name="technologies" placeholder="Python, Django, PostgreSQL"></label>
+        <label>Experience Level<input name="experienceLevel"></label>
+        <label>Engineering Complexity<input name="engineeringComplexity"></label>
+        <label>Business Objective<textarea name="businessObjective"></textarea></label>
+        <label>Real-World Impact<textarea name="realWorldImpact"></textarea></label>
+        <label>Skills Demonstrated<input name="skillsDemonstrated"></label>
         <label>Demo URL<input name="demoUrl" type="url"></label>
         <label>GitHub URL<input name="githubUrl" type="url"></label>
-        <label>YouTube URL<input name="youtubeUrl"></label>
-        <label>Resume URL<input name="caseStudyUrl"></label>
-        <label>Status<input name="status" required></label>
-        <label>Tags<input name="tags" required></label>
-        <div class="admin-actions">
-          <button type="submit">Save Project</button>
-          <button type="button" data-reset-form>Reset</button>
-          <button type="button" data-export-json>Export JSON</button>
-          <label class="import-button">Import JSON<input type="file" data-import-json accept="application/json"></label>
-        </div>
-      </form>
-
-      <section>
-        <h2>Projects</h2>
-        <div class="admin-projects" data-admin-projects></div>
-      </section>
-    </section>
-  </main>
-  <script src="admin.js"></script>
-</body>
-</html>
+        <label>YouTube URL<input name="youtubeUrl" type="url"></label>
+        <label>Case study URL<input name="caseStudyUrl" type="url"></label>
+        <label>Tags<input name="tags"></label>
+</div></details><div class="actions"><button class="button">Save project</button><button type="button" id="cancel">Cancel</button></div></form></section>
+<div class="filters"><label>Search projects<input id="search" type="search" placeholder="Name, category or technology"></label><label>Status<select id="filter"></select></label></div>
+<p id="count" role="status"></p><div id="list"></div></section></main><script src="admin.js"></script></body></html>
