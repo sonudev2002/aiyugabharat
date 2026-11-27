@@ -63,6 +63,38 @@
     "caseStudyUrl": ""
   },
   {
+    "name": "GATE Study Desk",
+    "description": "Practise GATE Computer Science previous-year questions, take timed mock tests, and revisit mistakes with topic-wise revision cards.",
+    "objective": "Connect each practice attempt to a worked explanation and a personal revision notebook.",
+    "technologies": [
+      "JavaScript",
+      "Cloudflare Workers",
+      "D1",
+      "SQLite"
+    ],
+    "experienceLevel": "Advanced",
+    "engineeringComplexity": "High",
+    "businessObjective": "Give GATE CSE candidates one place to practise and track weak topics.",
+    "realWorldImpact": "Learners can review incorrect answers and resume saved mock tests.",
+    "skillsDemonstrated": [
+      "Exam simulation",
+      "Progress analytics",
+      "Cross-device sync"
+    ],
+    "category": "AI Education",
+    "status": "Prototype",
+    "tags": [
+      "GATE CSE",
+      "PYQs",
+      "Mock tests",
+      "Revision"
+    ],
+    "demoUrl": "https://gate-cs-study-desk.gallantmyrrh5.chatgpt.site/",
+    "githubUrl": "https://github.com/sonudev2002/gatewebsite/tree/master/study-desk",
+    "youtubeUrl": "",
+    "caseStudyUrl": ""
+  },
+  {
     "name": "AI Content Studio",
     "description": "A planned workspace for turning a brief into videos, presentations, and posts, then scheduling publication across channels.",
     "objective": "Enable businesses, creators, educators, startups, and marketing teams to generate high-quality multimedia content, automate publishing workflows, monitor engagement metrics, and continuously improve content performance using AI.",
